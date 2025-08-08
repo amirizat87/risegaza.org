@@ -1,24 +1,32 @@
-#map { height: 100vh; }
+/* ——— Saiz peta penuh skrin ——— */
+#map {
+  height: 100vh;
+}
 
-/* ————— Pulsing red dot ————— */
+/* ——— Titik merah + animasi kelip ——— */
 .pulse {
-  /* kosongkan background default marker */
-  background: none;
-  border: none;
-}
-
-.pulse div {                     /* bulatan asas */
-  width: 18px; height: 18px;
-  background: rgba(255,0,0,0.9);
+  width: 20px;          /* pastikan sama dgn iconSize */
+  height: 20px;
+  position: relative;   /* asas utk pseudo element */
   border-radius: 50%;
-  position: relative;
 }
 
-.pulse div::after {              /* gelombang berkelip */
+/* Titik statik di tengah */
+.pulse::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 0, 0, 0.9);
   border-radius: 50%;
-  background: rgba(255,0,0,0.8);
+}
+
+/* Gelombang berkelip */
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 50%;
   animation: pulse 1.4s ease-out infinite;
 }
 
