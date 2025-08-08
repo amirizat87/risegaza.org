@@ -1,16 +1,29 @@
 #map { height: 100vh; }
 
-/* Bulatan merah kelip */
+/* ————— Pulsing red dot ————— */
 .pulse {
-  width: 20px;          /* sama dengan iconSize */
-  height: 20px;
+  /* kosongkan background default marker */
+  background: none;
+  border: none;
+}
+
+.pulse div {                     /* bulatan asas */
+  width: 18px; height: 18px;
+  background: rgba(255,0,0,0.9);
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse div::after {              /* gelombang berkelip */
+  content: '';
+  position: absolute; inset: 0;
   border-radius: 50%;
   background: rgba(255,0,0,0.8);
-  animation: pulse 1s infinite;
+  animation: pulse 1.4s ease-out infinite;
 }
 
 @keyframes pulse {
-  0%   { transform: scale(.5); opacity:.9; }
-  70%  { transform: scale(1.5); opacity:0; }
-  100% { transform: scale(.5); opacity:0; }
+  0%   { transform: scale(0.4); opacity: 1; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(0.4); opacity: 0; }
 }
