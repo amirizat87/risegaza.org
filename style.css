@@ -63,3 +63,29 @@ footer {
   70%  { transform: scale(1.6); opacity: 0; }
   100% { transform: scale(0.4); opacity: 0; }
 }
+
+/* ===== RESPONSIF: skrin ≤ 600px ===== */
+@media (max-width: 600px) {
+  header {
+    padding: 16px 8px 8px;
+  }
+
+  header .logo {
+    width: 140px;          /* logo lebih kecil */
+  }
+
+  header h1 {
+    font-size: 1rem;       /* tajuk kecil sikit */
+  }
+
+  /* Tooltip Leaflet kadang besar – kecikkan fon */
+  .leaflet-tooltip {
+    font-size: 0.75rem;
+    padding: 2px 4px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 8px 4px;
+  }
+}
