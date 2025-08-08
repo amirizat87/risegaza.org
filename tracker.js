@@ -9,7 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 /* ——— IKON KELIP-KELIP ——— */
 const pulsingIcon = L.divIcon({
   className: 'pulse',
-  iconSize: [20, 20],
+  iconSize: [5, 5],
   iconAnchor: null
 });
 
@@ -36,5 +36,6 @@ points.forEach(p => {
    .addTo(map)
    .bindTooltip(p.name, { permanent: true, direction: 'top' });
 });
+
 
 
