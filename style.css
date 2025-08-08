@@ -1,17 +1,48 @@
-/* ——— Saiz peta penuh skrin ——— */
-#map {
+/* ===== Layout asas ===== */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+  font-family: system-ui, sans-serif;
 }
 
-/* ——— Titik merah + animasi kelip ——— */
+/* --- Header --- */
+header {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 12px 8px;
+}
+header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* --- Peta ambil ruang tengah --- */
+main {
+  flex: 1;                 /* isi ruang baki */
+}
+#map {
+  height: 100%;            /* penuh dalam main */
+}
+
+/* --- Footer --- */
+footer {
+  background: #f5f5f5;
+  text-align: center;
+  padding: 10px 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* ===== Pulsing marker (kekal sama) ===== */
 .pulse {
-  width: 20px;          /* pastikan sama dgn iconSize */
+  width: 20px;
   height: 20px;
-  position: relative;   /* asas utk pseudo element */
+  position: relative;
   border-radius: 50%;
 }
-
-/* Titik statik di tengah */
 .pulse::before {
   content: '';
   position: absolute;
@@ -19,8 +50,6 @@
   background: rgba(255, 0, 0, 0.9);
   border-radius: 50%;
 }
-
-/* Gelombang berkelip */
 .pulse::after {
   content: '';
   position: absolute;
@@ -29,7 +58,6 @@
   border-radius: 50%;
   animation: pulse 1.4s ease-out infinite;
 }
-
 @keyframes pulse {
   0%   { transform: scale(0.4); opacity: 1; }
   70%  { transform: scale(1.6); opacity: 0; }
