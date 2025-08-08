@@ -4,35 +4,21 @@
   <meta charset="utf-8">
   <title>Tracker Map</title>
 
-  <!-- Leaflet CDN -->
+  <!-- Leaflet CSS -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <style>
-    #map{height:100vh}                 /* peta penuh skrin */
-    .pulse{width:20px;height:20px;
-      margin:-10px 0 0 -10px;border-radius:50%;
-      background:rgba(255,0,0,.8);animation:pulse 1s infinite}
-    @keyframes pulse{0%{transform:scale(.5);opacity:.9}
-      70%{transform:scale(1.5);opacity:0}100%{transform:scale(.5);opacity:0}}
-  </style>
+
+  <!-- Rupa custom -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Peta penuhi skrin -->
   <div id="map"></div>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const map=L.map('map').setView([5.4164,100.3327],8);      // titik mula (Penang)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-       {maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-    const pulsingIcon=L.divIcon({className:'pulse'});
-    const marker=L.marker([5.4164,100.3327],{icon:pulsingIcon}).addTo(map);
 
-    // Contoh update lokasi setiap 5 saat
-    /* setInterval(()=>{
-         // taruh koordinat baharu
-         marker.setLatLng([5.43,100.3]);
-       },5000); */
-  </script>
-<script src="tracker.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Logik marker -->
+  <script src="tracker.js"></script>
 </body>
 </html>
-
