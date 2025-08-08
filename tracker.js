@@ -9,8 +9,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 /* ——— IKON KELIP-KELIP ——— */
 const pulsingIcon = L.divIcon({
   className: 'pulse',
-  iconSize:  [20, 20],
-  iconAnchor:[0, 0]      // ⚠️  NO offset (margin) – kita guna translate CSS
+  iconSize: [20, 20],
+  iconAnchor: null
 });
 
 /* ——— KOORDINAT MARKER ——— */
@@ -36,4 +36,5 @@ points.forEach(p => {
    .addTo(map)
    .bindTooltip(p.name, { permanent: true, direction: 'top' });
 });
+
 
