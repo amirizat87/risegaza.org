@@ -1,5 +1,5 @@
 /* ——— SETUP PETA ——— */
-const map = L.map('map').setView([10, 100], 4);   // fokus Asia S & SE
+const map = L.map('map').setView([4.5, 102.0], 6);   // lat, lng, zoom
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -20,7 +20,7 @@ const points = [
   { name:'Sri Lanka',  lat:  7.8731,  lng:  80.7718 },
   { name:'Bangladesh', lat: 23.6850,  lng:  90.3563 },
   { name:'Pakistan',   lat: 30.3753,  lng:  69.3451 },
-  { name:'Filipina',   lat: 12.8797,  lng: 121.7740 },
+  { name:'Filipina',   lat: 8.0070,   lng: 124.2880 },
   { name:'Indonesia',  lat: -0.7893,  lng: 113.9213 },
   { name:'Thailand',   lat: 15.8700,  lng: 100.9925 },
 
@@ -36,6 +36,7 @@ points.forEach(p => {
    .addTo(map)
    .bindTooltip(p.name, { permanent: true, direction: 'top' });
 });
+
 
 
 
