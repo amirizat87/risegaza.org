@@ -6,8 +6,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-/* ------------ IKON KELIP-KELIP ------------ */
-const pulsingIcon = L.divIcon({ className: 'pulse' });
+/* ---------- IKON KELIP-KELIP ---------- */
+const pulsingIcon = L.divIcon({
+  className: 'pulse',
+  iconSize:  [20, 20],   // saiz sebenar
+  iconAnchor:[10, 10]    // pusat (½ saiz)
+});
 
 /* ------------ SENARAI TITIK ------------ */
 const points = [
@@ -32,3 +36,4 @@ points.forEach(p => {
    .addTo(map)
    .bindTooltip(p.name, { permanent: true, direction: 'top' });
 });
+
