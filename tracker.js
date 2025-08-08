@@ -1,54 +1,34 @@
-/* --------- SETUP PETA ---------- */
-const map = L.map('map').setView([5.4164, 100.3327], 8);   // titik mula
+/* ------------ SETUP PETA ------------ */
+const map = L.map('map').setView([10.0, 100.0], 4);   // fokus Asia S & SE
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-/* --------- IKON KELIP-KELIP ---------- */
-const pulsingIcon = L.divIcon({ className: 'pulse' });  // .pulse ada dalam style.css
+/* ------------ IKON KELIP-KELIP ------------ */
+const pulsingIcon = L.divIcon({ className: 'pulse' });
 
-/* --------- UTIL MARKER ---------- */
-const markers = [];   // simpan semua marker di sini
+/* ------------ SENARAI TITIK ------------ */
+const points = [
+  // Negara
+  { name: 'Maldives',    lat:  3.2028,  lng:  73.2207 },
+  { name: 'Sri Lanka',   lat:  7.8731,  lng:  80.7718 },
+  { name: 'Bangladesh',  lat: 23.6850,  lng:  90.3563 },
+  { name: 'Pakistan',    lat: 30.3753,  lng:  69.3451 },
+  { name: 'Filipina',    lat: 12.8797,  lng: 121.7740 },
+  { name: 'Indonesia',   lat: -0.7893,  lng: 113.9213 },
+  { name: 'Thailand',    lat: 15.8700,  lng: 100.9925 },
 
-// tambah marker baru ➜ pulang index dalam array
-function addMarker(lat, lng, label = '') {
-  const m = L.marker([lat, lng], { icon: pulsingIcon })
-             .addTo(map)
-             .bindTooltip(label, { permanent: true, direction: 'top' });
-  markers.push(m);
-  return markers.length - 1;      // index marker
-}
+  // Negeri di Malaysia
+  { name: 'Perlis',      lat:  6.4440,  lng: 100.2048 },
+  { name: 'Kelantan',    lat:  6.1254,  lng: 102.2381 },
+  { name: 'Johor',       lat:  1.4854,  lng: 103.7618 }
+];
 
-// gerakkan marker ikut index
-function moveMarker(i, lat, lng) {
-  if (markers[i]) markers[i].setLatLng([lat, lng]);
-}
-
-/* --------- DEMO: satu marker bergerak ---------- */
-
-// 1) mula-mula letak marker
-const idPenjejak = addMarker(5.4164, 100.3327, 'Konvoi 1');
-
-// 2) simulasi bergerak setiap 3 saat
-let step = 0;
-setInterval(() => {
-  step += 0.02;
-  const newLat = 5.4164 + Math.sin(step) * 0.1;   // ubah sikit-sikit
-  const newLng = 100.3327 + Math.cos(step) * 0.1;
-  moveMarker(idPenjejak, newLat, newLng);
-}, 3000);
-
-/* --------- OPTIONAL: baca data JSON eksternal ---------- */
-/*
-async function refreshFromServer() {
-  const res = await fetch('coords.json?cache=' + Date.now());
-  const data = await res.json();          // [{lat:.., lng:.., name:'..'}, …]
-  data.forEach((pos, i) => {
-    if (!markers[i]) addMarker(pos.lat, pos.lng, pos.name);
-    else             moveMarker(i, pos.lat, pos.lng);
-  });
-}
-setInterval(refreshFromServer, 5000);
-*/
+/* ------------ LETAK MARKER ------------ */
+points.forEach(p => {
+  L.marker([p.lat, p.lng], { icon: pulsingIcon })
+   .addTo(map)
+   .bindTooltip(p.name, { permanent: true, direction: 'top' });
+});
