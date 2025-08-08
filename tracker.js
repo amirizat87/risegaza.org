@@ -21,7 +21,7 @@ const points = [
   { name:'Bangladesh', lat: 23.6850,  lng:  90.3563 },
   { name:'Pakistan',   lat: 30.3753,  lng:  69.3451 },
   { name:'Filipina',   lat: 8.0070,   lng: 124.2880 },
-  { name:'Indonesia',  lat: -0.7893,  lng: 113.9213 },
+  { name:'Indonesia',  lat: -6.2088,  lng: 106.8456 },
   { name:'Thailand',   lat: 15.8700,  lng: 100.9925 },
 
   // Negeri Malaysia
@@ -36,6 +36,7 @@ points.forEach(p => {
    .addTo(map)
    .bindTooltip(p.name, { permanent: true, direction: 'top' });
 });
+
 
 
 
