@@ -129,11 +129,8 @@ routes.forEach(r => {
 // Kalau nak auto-zoom nampak semua laluan, buka komen baris bawah:
 // map.fitBounds(bounds, { padding: [30, 30] });
 
-/* ========= (Opsyen) Tambah marker kelip pulsing di setiap hentian =========
-   — Kalau nak, buang komen blok ini. Pastikan CSS .pulse dah ada. */
-/*
 const pulsingIcon = L.divIcon({ className: 'pulse', iconSize:[20,20], iconAnchor:[0,0] });
 Object.entries(stops).forEach(([label, ll]) => {
   L.marker(ll, { icon: pulsingIcon }).addTo(map).bindTooltip(label, {direction:'top'});
 });
-*/
+
