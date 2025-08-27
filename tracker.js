@@ -126,11 +126,5 @@ routes.forEach(r => {
   if (line) bounds.extend(line.getBounds());
 });
 
-// Kalau nak auto-zoom nampak semua laluan, buka komen baris bawah:
-// map.fitBounds(bounds, { padding: [30, 30] });
-
-const pulsingIcon = L.divIcon({ className: 'pulse', iconSize:[20,20], iconAnchor:[0,0] });
-Object.entries(stops).forEach(([label, ll]) => {
-  L.marker(ll, { icon: pulsingIcon }).addTo(map).bindTooltip(label, {direction:'top'});
-});
-
+// auto-zoom nampak semua laluan
+map.fitBounds(bounds, { padding: [30, 30] });
