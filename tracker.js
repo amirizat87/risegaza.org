@@ -6,12 +6,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-/* ========= PETA NAMA → KOORDINAT =========
-   (anggaran tepat; boleh tweak bila perlu) */
+/* ========= PETA NAMA → KOORDINAT ========= */
 const stops = {
   // Route 1
   'Masjid Muhammadi, Kota Bharu':        [6.1288, 102.2386],
-  'Masjid Terapung, Kuala Terengganu':   [5.2830, 103.1736], // Masjid Terapung TT Zaharah
+  'Masjid Terapung, Kuala Terengganu':   [5.2830, 103.1736],
   'Masjid Sultan Ahmad 1, Kuantan':      [3.8076, 103.3260],
   'R&R Temerloh':                        [3.4565, 102.4275],
   'R&R Genting Sempah':                  [3.3548, 101.7900],
@@ -32,7 +31,7 @@ const stops = {
   'Petronas Tol Sungai Dua, Penang':     [5.4820, 100.4340],
   'R&R Tapah':                           [4.1220, 101.2570],
 
-  // Himpunan Luar Negara (dikemaskini)
+  // Luar Negara (dikemas kini)
   'Maldives':                            [3.2028, 73.2207],
   'Sri Lanka':                           [7.8731, 80.7718],
   'Bangladesh':                          [23.6850, 90.3563],
@@ -42,7 +41,7 @@ const stops = {
   'Thailand':                            [15.8700, 100.9925]
 };
 
-/* ========= SENARAI ROUTE (ikut turutan hentian) ========= */
+/* ========= SENARAI ROUTE ========= */
 const routes = [
   {
     name: 'Laluan 1',
@@ -59,19 +58,12 @@ const routes = [
   {
     name: 'Laluan 2',
     color: '#00c2ff',
-    stops: [
-      'Hentian Gua Musang',
-      'R&R Genting Sempah',
-      'Dataran Merdeka'
-    ]
+    stops: ['Hentian Gua Musang', 'R&R Genting Sempah', 'Dataran Merdeka']
   },
   {
     name: 'Laluan 3',
     color: '#ffd400',
-    stops: [
-      'R&R Seremban',
-      'Dataran Merdeka'
-    ]
+    stops: ['R&R Seremban', 'Dataran Merdeka']
   },
   {
     name: 'Laluan 4',
@@ -92,40 +84,31 @@ const routes = [
       'R&R Tapah',
       'Dataran Merdeka'
     ]
-  }, // <— koma yang hilang tadì
+  },
   {
     name: 'Luar Negara',
     color: '#FF0000',
-    stops: [
-      'Maldives',
-      'Sri Lanka',
-      'Bangladesh',
-      'Pakistan',
-      'Filipina',
-      'Indonesia',
-      'Thailand'
-    ]
+    noLine: true,  // <— dot saja, tiada garisan
+    stops: ['Maldives', 'Sri Lanka', 'Bangladesh', 'Pakistan', 'Filipina', 'Indonesia', 'Thailand']
   }
 ];
 
 /* ========= HELPER: lukis satu route ========= */
 function drawRoute(route) {
-  // Tukar nama hentian → [lat,lng]
-  const latlngs = route.stops
-    .map(n => stops[n])
-    .filter(Boolean);
+  const latlngs = route.stops.map(n => stops[n]).filter(Boolean);
+  if (latlngs.length === 0) return null;
 
-  if (latlngs.length < 2) return;
+  // Lukis garisan HANYA jika bukan noLine & ada sekurang-kurangnya 2 hentian
+  if (!route.noLine && latlngs.length >= 2) {
+    L.polyline(latlngs, {
+      color: route.color,
+      weight: 4,
+      opacity: 0.95,
+      lineJoin: 'round'
+    }).addTo(map);
+  }
 
-  // Garisan
-  const line = L.polyline(latlngs, {
-    color: route.color,
-    weight: 4,
-    opacity: 0.95,
-    lineJoin: 'round'
-  }).addTo(map);
-
-  // Titik bulat setiap hentian
+  // Sentiasa letak titik pada setiap hentian
   latlngs.forEach((ll, idx) => {
     L.circleMarker(ll, {
       radius: 6,
@@ -134,19 +117,20 @@ function drawRoute(route) {
       fillOpacity: 1,
       weight: 2
     })
-    .addTo(map)
-    .bindTooltip(`${route.stops[idx]}`, { permanent: false, direction: 'top' });
+      .addTo(map)
+      .bindTooltip(route.stops[idx], { permanent: false, direction: 'top' });
   });
 
-  return line;
+  // Pulangkan bounds untuk fit kemudian
+  return L.latLngBounds(latlngs);
 }
 
-/* ========= LUKIS SEMUA ROUTE ========= */
+/* ========= LUKIS SEMUA ROUTE & FIT ========= */
 const bounds = L.latLngBounds([]);
 routes.forEach(r => {
-  const line = drawRoute(r);
-  if (line) bounds.extend(line.getBounds());
+  const b = drawRoute(r);
+  if (b) bounds.extend(b);
 });
 
-// auto-zoom nampak semua laluan
+// Auto-zoom supaya semua laluan/point nampak
 map.fitBounds(bounds, { padding: [30, 30] });
