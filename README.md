@@ -23,10 +23,10 @@ Laman web ni dibuat untuk **papar peta penjejakan (live tracking)** laluan/konvo
 
 ## 📦 Struktur Projek
 .
-├── index.html # rangka laman (header, peta, footer)
-├── style.css # tema gelap Sumud + animasi marker
-├── tracker.js # senarai titik & definisi laluan
-└── README.md
+index.html # rangka laman (header, peta, footer)
+style.css # tema gelap Sumud + animasi marker
+tracker.js # senarai titik & definisi laluan
+README.md
 
 ---
 
@@ -43,5 +43,7 @@ routes.push({
   stops: ['Hentian A', 'Hentian B', 'Dataran Merdeka']
 });
 const map = L.map('map').setView([4.5, 102.0], 6);
+
+---
 
 Direka & dibangunkan dengan solidariti oleh Amir Izat 🇲🇾.
