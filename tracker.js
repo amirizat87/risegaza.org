@@ -32,13 +32,13 @@ const stops = {
   'Petronas Tol Sungai Dua, Penang':     [5.4820, 100.4340],
   'R&R Tapah':                           [4.1220, 101.2570],
 
-  // Himpunan Luar Negara
+  // Himpunan Luar Negara (dikemaskini)
   'Maldives':                            [3.2028, 73.2207],
   'Sri Lanka':                           [7.8731, 80.7718],
   'Bangladesh':                          [23.6850, 90.3563],
   'Pakistan':                            [30.3753, 69.3451],
-  'Filipina':                            [-0.7893, 113.9213],
-  'Indonesia':                           [3.2028, 73.2207],
+  'Filipina':                            [8.0070, 124.2880],  // Sarimanok Stadium, Marawi
+  'Indonesia':                           [-6.2088, 106.8456], // Jakarta (Monas)
   'Thailand':                            [15.8700, 100.9925]
 };
 
@@ -92,8 +92,8 @@ const routes = [
       'R&R Tapah',
       'Dataran Merdeka'
     ]
-  }
-    {
+  }, // <— koma yang hilang tadì
+  {
     name: 'Luar Negara',
     color: '#FF0000',
     stops: [
@@ -103,9 +103,9 @@ const routes = [
       'Pakistan',
       'Filipina',
       'Indonesia',
-      'Thailand'      
+      'Thailand'
     ]
-  },
+  }
 ];
 
 /* ========= HELPER: lukis satu route ========= */
@@ -150,4 +150,3 @@ routes.forEach(r => {
 
 // auto-zoom nampak semua laluan
 map.fitBounds(bounds, { padding: [30, 30] });
-
