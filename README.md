@@ -30,20 +30,4 @@ README.md
 
 ---
 
-## 🗺️ Cara Ubah Titik & Laluan
-- Semua konfigurasi ada dalam `tracker.js`.
-
-### Tambah/ubah titik
-```js
-// Contoh tambah lokasi baharu
-stops['Nama Lokasi'] = [LAT, LNG];
-routes.push({
-  name: 'Laluan Baru',
-  color: '#ff6600',
-  stops: ['Hentian A', 'Hentian B', 'Dataran Merdeka']
-});
-const map = L.map('map').setView([4.5, 102.0], 6);
-
----
-
-Direka & dibangunkan dengan solidariti oleh Amir Izat 🇲🇾.
+## 🗺️ Direka & dibangunkan dengan solidariti oleh Amir Izat
