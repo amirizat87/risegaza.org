@@ -30,7 +30,16 @@ const stops = {
   // Route 5
   'Masjid Alwi, Kangar':                 [6.4337, 100.1980],
   'Petronas Tol Sungai Dua, Penang':     [5.4820, 100.4340],
-  'R&R Tapah':                           [4.1220, 101.2570]
+  'R&R Tapah':                           [4.1220, 101.2570],
+
+  // Himpunan Luar Negara
+  'Maldives':                            [3.2028, 73.2207],
+  'Sri Lanka':                           [7.8731, 80.7718],
+  'Bangladesh':                          [23.6850, 90.3563],
+  'Pakistan':                            [30.3753, 69.3451],
+  'Filipina':                            [-0.7893, 113.9213],
+  'Indonesia':                           [3.2028, 73.2207],
+  'Thailand':                            [15.8700, 100.9925]
 };
 
 /* ========= SENARAI ROUTE (ikut turutan hentian) ========= */
@@ -84,6 +93,19 @@ const routes = [
       'Dataran Merdeka'
     ]
   }
+    {
+    name: 'Luar Negara',
+    color: '#FF0000',
+    stops: [
+      'Maldives',
+      'Sri Lanka',
+      'Bangladesh',
+      'Pakistan',
+      'Filipina',
+      'Indonesia',
+      'Thailand'      
+    ]
+  },
 ];
 
 /* ========= HELPER: lukis satu route ========= */
@@ -128,3 +150,4 @@ routes.forEach(r => {
 
 // auto-zoom nampak semua laluan
 map.fitBounds(bounds, { padding: [30, 30] });
+
