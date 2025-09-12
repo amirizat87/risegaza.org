@@ -27,7 +27,3 @@ Laman web ni dibuat untuk **papar peta penjejakan (live tracking)** laluan/konvo
 - style.css # tema gelap Sumud + animasi marker
 - tracker.js # senarai titik & definisi laluan
 - README.md
-
----
-
-🗺️ Direka & dibangunkan dengan solidariti oleh Amir Izat🇲🇾🇵🇸.
